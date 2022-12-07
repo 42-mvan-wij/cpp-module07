@@ -8,4 +8,11 @@ void iter(T* arr_ptr, int length, void (*fn)(T &el)) {
 	}
 }
 
+template<typename T>
+void iter(T* const arr_ptr, int length, void (*fn)(T const &el)) {
+	for (int i = 0; i < length; i++) {
+		fn(arr_ptr[i]);
+	}
+}
+
 #endif

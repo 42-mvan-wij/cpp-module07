@@ -9,7 +9,7 @@ class Array {
 		Array<T>() : content(new T[0]), n(0) {};
 		Array<T>(unsigned int n) : content(new T[n]), n(n) {};
 
-		~Array<T>() { delete[] content; };
+		virtual ~Array<T>() { delete[] content; };
 
 		Array<T>(Array<T>& src) : n(src.size()) {
 			content = new T[n];
@@ -34,11 +34,19 @@ class Array {
 			return content[i];
 		};
 
+		T const & operator[](unsigned int i) const {
+			if (i >= n)
+				throw std::exception();
+			return content[i];
+		};
+
 		unsigned int size() const { return n; };
 
 	protected:
 		T* content;
 		unsigned int n;
 };
+
+// NOTE: you can use tpp files, if you include them here after the class, then implement them like in .cpp files, but remember to do header protection
 
 #endif
