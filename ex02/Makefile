@@ -6,7 +6,7 @@
 #    By: mvan-wij <mvan-wij@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/10/27 13:16:39 by mvan-wij      #+#    #+#                  #
-#    Updated: 2022/06/16 16:35:47 by mvan-wij      ########   odam.nl          #
+#    Updated: 2022/12/07 12:04:41 by mvan-wij      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,14 +30,14 @@ LIBFT		:=
 MINILIBX	:=
 
 CC			:= c++
-CFLAGS		+= -Wall -Wextra -Werror -std=c++98 $(if $(DEBUG), -g3) $(if $(SANITIZE), -fsanitize=address -g3)
+CFLAGS		+= -Wall -Wextra -Werror -std=c++98 -pedantic $(if $(DEBUG), -g3) $(if $(SANITIZE), -fsanitize=address -g3)
 
 ################################################################################
 
 USER_LIBS +=
 SYSTEM_LIBS +=
 FRAMEWORKS +=
-HEADERS := $(wildcard *.h *.hpp)
+HEADERS := $(wildcard *.h *.hpp *.tpp)
 SOURCES := $(wildcard *.cpp)
 
 ################################################################################
@@ -74,6 +74,7 @@ $(NAME): $(USER_LIBS) $(OBJECTS)
 	$(CC) $(CFLAGS) $(OBJECTS) $(LIB_FLAGS) -o $(NAME)
 	@$(call print_prefix,"$(PROJECT)","make")
 	@printf "$(BLUE_FG)$(NAME)$(RESET_COLOR) created\n"
+	@echo $(MAKE_DATA) > $(DATA_FILE)
 
 
 $(OBJDIR)/%.o: %.cpp $(HEADERS)
